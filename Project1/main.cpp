@@ -6,36 +6,36 @@ using namespace std;
 
 class Student
 {
-	public:
-		string get_name() const
-		{
-			return name;
-		}
+public:
+	string get_name() const
+	{
+		return name;
+	}
 
-		int get_num() const
-		{
-			return num;
-		}
+	int get_num() const
+	{
+		return num;
+	}
 
-		void set_name(const string& name)
-		{
-			this->name = name;
-		}
+	void set_name(const string& name)
+	{
+		this->name = name;
+	}
 
-		void set_num(int num)
-		{
-			this->num = num;
-		}
+	void set_num(int num)
+	{
+		this->num = num;
+	}
 
-		void to_string() const
-		{
-			cout << name << " " << num;
-		}
+	void to_string() const
+	{
+		cout << name << " " << num;
+	}
 
-	private:
-		string name;
-		int num;
-		int age;
+private:
+	string name;
+	int num;
+	int age = 10;
 };
 
 int main()
