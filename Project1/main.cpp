@@ -57,9 +57,13 @@ int main()
 	// Student student;
 	// student.set_name("jief ");
 	// student.set_num(23);
-	// student.to_string();
-	teacher t;
-	cout << t.get_id() << endl;
-	system("pause");
+	// student.to_string(); 
+	teacher t(10);
+	cout << t.get_id() << endl; 
+	t.set_id(20);
+	t.set_name("john");
+	teacher t2(t);
+	cout << t2.get_id() << " " << t2.get_name()<< endl;
+	system("pause"); 
 	return 0;
 }
