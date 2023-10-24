@@ -1,38 +1,42 @@
-#include <iostream>
-#include <string>
-using namespace std;
-
-// ½¨ÖşÎï
-class Building
-{
-public:
-	Building()
-	{
-		m_SittingRoom = "¿ÍÌü";
-		m_BedRoom = "ÎÔÊÒ";
-	};
-
-	string m_SittingRoom; // ¿ÍÌü
-
-private:
-	string m_BedRoom; // ÎÔÊÒ
-};
-
-// È«¾Öº¯Êı
-void guys(Building* building)
-{
-	cout << "È«¾Öº¯Êıguys ÕıÔÚ·ÃÎÊ£º " << building->m_SittingRoom << endl;
-}
-
-void test()
-{
-	Building building;
-	guys(&building);
-}
-
-int main()
-{
-	test();
-
-	return 0;
-}
+ï»¿// #include <iostream>
+// #include <string>
+// using namespace std;
+//
+// // å»ºç­‘ç‰©ç±»
+// class Building
+// {
+// 	//guys æ˜¯ç±»Buildingçš„æœ‹å‹ï¼Œå¯ä»¥è®¿é—®ç§æœ‰æˆå‘˜
+// 	friend void guys(Building* building);
+//
+// public:
+// 	Building()
+// 	{
+// 		m_SittingRoom = "å®¢å…";
+// 		m_BedRoom = "å§å®¤";
+// 	};
+//
+// 	string m_SittingRoom; // å®¢å…
+//
+// private:
+// 	string m_BedRoom; // å§å®¤
+// };
+//
+// // å…¨å±€å‡½æ•°åšå‹å…ƒ
+// void guys(Building* building)
+// {
+// 	cout << "å…¨å±€å‡½æ•°guys æ­£åœ¨è®¿é—®ï¼š " << building->m_SittingRoom << endl;
+// 	cout << "å…¨å±€å‡½æ•°guys æ­£åœ¨è®¿é—®ï¼š " << building->m_BedRoom << endl;
+// }
+//
+// void test()
+// {
+// 	Building building;
+// 	guys(&building);
+// }
+//
+// // int main()
+// // {
+// // 	test();
+// //
+// // 	return 0;
+// // }
