@@ -202,7 +202,6 @@ int main()
 	// test5();
 	// test6();
 	test7();
-	int a;
 	return 0;
 	
 }
