@@ -4,7 +4,7 @@
 using namespace std;
 
 //动物类
-class animal
+class Animal
 {
 public:
 	int age;
@@ -15,14 +15,14 @@ public:
 // animal类变为虚	基类
 
 //子类 sheep
-class sheep :virtual  public animal
+class sheep :virtual  public Animal
 {
 public:
 
 };
 
 // 骆驼
-class tuo :virtual  public animal
+class tuo :virtual  public Animal
 {
 public:
 

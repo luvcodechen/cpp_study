@@ -62,7 +62,7 @@ void test5()
 	// 菱形继承，两个父类拥有相同数据，需要加上作用于加以区别
 	cout << "yt.sheep::age= " << yt.sheep::age << endl;
 	cout << "yt.tuo::age= " << yt.tuo::age << endl;
-	cout << "yt.age= " << ytage << endl;
+	cout << "yt.age= " << yt.age << endl;
 
 
 }

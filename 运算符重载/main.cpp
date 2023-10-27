@@ -67,21 +67,21 @@ public:
 };
 
 
-class cat
+class Cat
 {
 public:
-	cat(const int& age, const string& name)
+	Cat(const int& age, const string& name)
 	{
 		this->age = age;
 		this->name = name;
 	}
 
 	//÷ÿ‘ÿπÿœµ‘ÀÀ„∑˚==
-	bool operator==(cat& c)
+	bool operator==(Cat& c)
 	{
 		return this->age == c.age && this->name == c.name;
 	} //÷ÿ‘ÿπÿœµ‘ÀÀ„∑˚==
-	bool operator!=(cat& c)
+	bool operator!=(Cat& c)
 	{
 		return !(this->age == c.age && this->name == c.name);
 	}
@@ -172,8 +172,8 @@ void test5()
 //==÷ÿ‘ÿ≤‚ ‘
 void test6()
 {
-	cat c1(1, "ª∆≈£");
-	cat c2(1, "≈£");
+	Cat c1(1, "ª∆≈£");
+	Cat c2(1, "≈£");
 
 	if (c1 == c2)
 	{
