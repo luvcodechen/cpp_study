@@ -27,15 +27,15 @@ int knapsack(int capacity, const std::vector<int>& weights, const std::vector<in
 int main()
 {
 	Net::test();
-
-
+	
+	
 	std::vector<int> weights = {2, 3, 4, 5, 7, 8, 9};
 	std::vector<int> values = {3, 4, 5, 6, 10, 11, 12};
 	int capacity = 15; // ±³°üÈÝÁ¿
 	int numItems = weights.size();
-
+	
 	int maxTotalValue = knapsack(capacity, weights, values, numItems);
-
+	
 	std::cout << "sack£º\n" << "Maximum total value: " << maxTotalValue << std::endl;
 
 	return 0;

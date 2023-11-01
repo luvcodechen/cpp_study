@@ -134,7 +134,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base1.h" />
+    <ClInclude Include="base2.h" />
     <ClInclude Include="class_obj.h" />
+    <ClInclude Include="myArray.h" />
     <ClInclude Include="tempclass.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

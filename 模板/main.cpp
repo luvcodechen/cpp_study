@@ -2,8 +2,13 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+
 #include  "tempclass.h"
 #include  "class_obj.h"
+#include "base1.h"
+#include "base2.h"
+#include "myArray.h"
 using namespace std;
 
 // 普通函数与函数模板调用规则
@@ -122,6 +127,47 @@ void test6()
 	test02();
 	test03();
 }
+
+//类模板与继承
+void test7()
+{
+	test04();
+}
+
+void test8()
+{
+	// 问题： 类模板中成员函数创建时机是在调用阶段，导致分文件编写时链接不到
+	// 解决方式1： 包含cpp源文件
+	// 解决方式2： 将声明和实现写在一起，文件后缀名改为.hpp
+}
+
+void printArray(myArray<int>& data)
+{
+	for (int i = 0; i < data.get_size(); ++i)
+	{
+		cout << data[i] << " ";
+	}
+	cout << endl;
+}
+
+
+void test9()
+{
+	myArray<int> arr1(5);
+	// myArray<int> arr2(arr1);
+	// myArray<int >arr3(100);
+	// arr3 = arr1;
+
+	for (int i = 0; i < 5; ++i)
+	{
+		arr1.push_back(i);
+	}
+	printArray(arr1);
+	cout << arr1.get_capacity() << " " << arr1.get_size() << endl;
+	arr1.Pop_back();
+	printArray(arr1);
+}
+
 int main()
 {
 	// test1 ();
@@ -129,6 +175,9 @@ int main()
 	// test3();
 	// test4();
 	// test5();
-	test6();
+	// test6();
+	// test7();
+	// test05
+	// test9();
 	return 0;
 }
