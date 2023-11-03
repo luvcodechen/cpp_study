@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include <deque>
+#include <functional>
 #include <list>
 #include <map>
 #include <queue>
@@ -64,7 +65,7 @@ void test2()
 	public:
 		my_class1(const std::string& name, const int& age)
 			: name(name),
-			age(age)
+			  age(age)
 		{
 		}
 
@@ -523,6 +524,81 @@ void test21()
 	printVector(v);
 }
 
+// 内建函数对象 
+void test22()
+{
+	negate<int> n;
+	cout << n(50) << endl;
+
+	plus<int> p;
+	cout << p(10, 20) << endl;
+
+	vector<int> v(5, 1);
+	for (int i = 0; i < v.size(); ++i)
+	{
+		v[i] *= v[i] + i * 2;
+	}
+	printVector(v);
+
+	sort(v.begin(), v.end(), greater<int>());
+	printVector(v);
+
+	vector<bool> v1;
+	v1.push_back(true);
+	v1.push_back(false);
+	v1.push_back(true);
+	v1.push_back(false);
+	v1.push_back(false);
+	for (auto vb_reference : v1)
+	{
+		cout << vb_reference << " ";
+	}
+	cout << endl;
+
+	vector<bool> v2;
+	v2.resize(v1.size());
+	transform(v1.begin(), v1.end(), v2.begin(), logical_not<bool>());
+
+	for (auto vb_reference : v2)
+	{
+		cout << vb_reference << " ";
+	}
+	cout << endl;
+}
+
+// 常用算法
+void test23()
+{
+	vector<int> v(8);
+	for (int i = 0; i < v.size(); ++++i)
+	{
+		v.push_back(i);
+	}
+	auto it = find_if(v.begin(), v.end(), my_class());
+	if (it != v.end())
+	{
+		cout << "find" << endl;
+	}
+	else
+	{
+		cout << "not find" << endl;
+	}
+
+	auto it1 = adjacent_find(v.begin(), v.end());
+	if (it1 != v.end())
+	{
+		cout << "find" << endl;
+	}
+	else
+	{
+		cout << " not find" << endl;
+	}
+
+	printVector(v);
+
+	auto is = binary_search(v.begin(), v.end(), 8);
+}
+
 int main()
 
 {
@@ -547,5 +623,7 @@ int main()
 	// test19();
 	// test20();
 	// test21();
-	return 0; 
+	// test22();
+	test23();
+	return 0;
 }
