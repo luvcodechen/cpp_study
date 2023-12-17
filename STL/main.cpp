@@ -65,7 +65,7 @@ void test2()
 	public:
 		my_class1(const std::string& name, const int& age)
 			: name(name),
-			  age(age)
+			age(age)
 		{
 		}
 
@@ -599,6 +599,202 @@ void test23()
 	auto is = binary_search(v.begin(), v.end(), 8);
 }
 
+
+bool getT(deque<int>& dq, int num)
+{
+	if (dq.empty())
+	{
+		dq.push_back(num);
+		return true;
+	}
+	else if (dq.back() == num)
+	{
+		return false;
+	}
+	else if (dq.size() == 1)
+	{
+		if (num > dq.back())
+		{
+			dq.push_front(num);
+		}
+		else
+			dq.push_back(num);
+		return true;
+	}
+	else if (dq.size() == 2)
+	{
+		if (num < dq.back())
+		{
+			dq.push_back(num);
+			return true;
+		}
+		else if (num > dq.front())
+		{
+			dq.push_front(num);
+			return true;
+		}
+		else if (num != dq.front())
+		{
+			dq.insert(dq.begin() + 1, num);
+			return true;
+		}
+		return false;
+	}
+	else
+	{
+		if (num > dq.front())
+		{
+			dq.pop_back();
+			dq.push_front(num);
+			return true;
+		}
+		else if (num < dq.back())
+		{
+			return false;
+		}
+		else if (num > dq.back())
+		{
+			int temp = dq.back();
+			dq.pop_back();
+			if (getT(dq, num))
+			{
+				return true;
+			}
+			else
+			{
+				dq.push_back(temp);
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+int thirdMax(vector<int>& nums)
+{
+	if (nums.size() < 3)
+	{
+		return nums.size() == 1 ? nums[0] : max(nums[0], nums[1]);
+	}
+	deque<int> dq;
+	int cnt = 0;
+	for (int num : nums)
+	{
+		if (getT(dq, num))
+			cnt++;
+	}
+
+	return cnt < 3 ? dq.front() : dq.back();
+}
+
+vector<int> degree(const vector<int>& arr)
+{
+	int a[50000] = { 0 };
+	for (auto n : arr)
+	{
+		a[n] += 1;
+	}
+	int d = 0;
+	vector<int> v;
+	for (int i = 0; i < 50000; i++)
+		d = max(d, a[i]);
+	v.push_back(d);
+	for (int i = 0; i < 50000; i++)
+		if (a[i] == d)
+			v.push_back(i);
+	return v;
+}
+
+int findShortestSubArray(vector<int>& nums)
+{
+	vector<int> v(degree(nums));
+	int ans = nums.size();
+	int cnt = 0;
+	int d = v[0];
+	for (int i = 1; i < v.size(); i++)
+	{
+		cnt = 0;
+		int j = 0, k = 0;
+		while (nums[k] != v[i]) k++;
+		for (j = k; j < nums.size(); j++)
+		{
+			if (nums[j] == v[i])
+				cnt++;
+			if (cnt == d)
+				break;
+		} //  for
+		ans = min(ans, j - k + 1);
+	} // for
+
+	return ans;
+}
+
+
+int firstMissingPositive(vector<int>& nums)
+{
+	for (int i = 0; i < nums.size(); i++)
+	{
+		if (nums[i] <= 0 || nums[i] > nums.size())
+		{
+			continue;
+		}
+		else
+		{
+			swap(nums[i], nums[nums[i] - 1]);
+		}
+	}
+
+	for (int i = 0; i < nums.size(); i++)
+	{
+		if (nums[i] <= 0 || nums[i] > nums.size())
+		{
+			continue;
+		}
+		else
+		{
+			swap(nums[i], nums[nums[i] - 1]);
+		}
+	}
+
+	for (int i = 0; i < nums.size(); i++)
+	{
+		int n = nums[i];
+		if (n <= nums.size() && n > 0 && nums[n - 1] == i + 1)
+			continue;
+		else
+			return i + 1;
+	}
+	return nums.size() + 1;
+}
+
+vector<vector<int>> imageSmoother(vector<vector<int>>& img)
+{
+	int m = img.size();
+	int n = img[0].size();
+
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			int cnt = 0;
+			int num = 0;
+			for (int k = i - 1; k < i + 2; k++)
+			{
+				for (int g = j - 1; g < j + 2; g++)
+				{
+					if (k >= 0 && g >= 0 && k < m && g < n)
+					{
+						cnt++;
+						num += img[k][g];
+					}
+				}
+			}
+			img[i][j] = num / cnt;
+		}
+	}
+	return img;
+}
+
 int main()
 
 {
@@ -624,6 +820,28 @@ int main()
 	// test20();
 	// test21();
 	// test22();
-	test23();
+	// test23();
+	// vector<int> v = {
+	// -3, 9, 16, 4, 5, 16, -4, 9, 26, 2, 1, 19, -1, 25, 7, 22, 2, -7, 14, 2, 5, -6, 1, 17, 3, 24, -4, 17, 15
+	// };
+	// int num = thirdMax(v);
+	// cout << num;
+	// int n = firstMissingPositive(v);
+	// cout << typeid(v.size()).name();
+	// cout << n;
+
+	vector<vector<int>> img({
+		{100, 200, 100}, {200, 50, 200}, {100, 200, 100}
+		});
+	vector<vector<int>> m = imageSmoother(img);
+	for (auto v : m)
+	{
+		for (auto vv : v)
+		{
+			cout << vv << ' ';
+		}
+		cout << endl;
+	}
+
 	return 0;
 }
