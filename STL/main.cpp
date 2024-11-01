@@ -795,8 +795,23 @@ vector<vector<int>> imageSmoother(vector<vector<int>>& img)
 	return img;
 }
 
+int findSubstringInWraproundString(string s) {
+	int num = s.size();
+	int ans = 0;
+	vector<int> v(26, 0);
+	v[s[0] - 'a']++;
+	for (int i = 1, j = 1; i < num; i++) {
+		int a = s[i - 1] - 'a', b = s[i] - 'a';
+		if ((a ==25 && b == 0) || (b - a == 1))
+			j++;
+		else
+			j = 1;
+		v[b] = max(j, v[b]);
+	}
+	for (int i = 0; i < 26; i++)ans += v[i];
+	return ans;
+}
 int main()
-
 {
 	// test1();
 	// test2();
@@ -830,18 +845,21 @@ int main()
 	// cout << typeid(v.size()).name();
 	// cout << n;
 
-	vector<vector<int>> img({
-		{100, 200, 100}, {200, 50, 200}, {100, 200, 100}
-		});
-	vector<vector<int>> m = imageSmoother(img);
-	for (auto v : m)
-	{
-		for (auto vv : v)
-		{
-			cout << vv << ' ';
-		}
-		cout << endl;
-	}
+	//vector<vector<int>> img({
+	//	{100, 200, 100}, {200, 50, 200}, {100, 200, 100}
+	//	});
+	//vector<vector<int>> m = imageSmoother(img);
+	//for (auto v : m)
+	//{
+	//	for (auto vv : v)
+	//	{
+	//		cout << vv << ' ';
+	//	}
+	//	cout << endl;
+	//}
+	string s("cac");
+	int a=findSubstringInWraproundString(s);
+	cout << a;
 
 	return 0;
 }
